@@ -3,8 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlin.serialization)
-    id ("org.jetbrains.kotlin.kapt")
-    id ("com.google.devtools.ksp")
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -32,11 +31,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "21"
     }
     buildFeatures {
         compose = true
@@ -61,23 +60,15 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
     implementation(libs.navigation.compose)
-    implementation(libs.androidx.room.runtime)
     implementation(libs.kotlinx.serialization.json)
-    ksp("androidx.room:room-compiler:2.7.2")
-    implementation(libs.androidx.room.ktx)
     implementation(libs.koin.android)
-    // Koin Compose support
     implementation(libs.koin.androidx.compose)
-    implementation ("com.google.dagger:hilt-android:2.54")
-    kapt ("com.google.dagger:hilt-android-compiler:2.54")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.4")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.4")
-    implementation("com.squareup.retrofit2:retrofit:2.11.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.11.0")
-    implementation("io.coil-kt:coil-compose:2.7.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1")
-    implementation ("androidx.room:room-runtime:2.6.1")
+    implementation(libs.lifecycle.viewmodel.compose)
+    implementation(libs.lifecycle.runtime.ktx)
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.coil.compose)
+    implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.room.runtime)
     ksp(libs.androidx.room.compiler)
-    implementation ("androidx.room:room-ktx:2.6.1")
-
 }
